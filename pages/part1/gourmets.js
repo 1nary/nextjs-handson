@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import getConfig from 'next/config';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,8 +11,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 
 const fetchData = async (keyword) => {
   const { API_HOST } = getConfig().publicRuntimeConfig;
@@ -33,6 +33,7 @@ const Shops = ({ firstViewShops }) => {
 
   const onSearchClick = async () => {
     const data = await fetchData(keyword);
+
     setShops(data);
     setKeyword('');
   };
