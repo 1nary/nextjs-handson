@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import * as React from 'react';
 import getConfig from 'next/config';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -11,6 +12,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Drawer from '@mui/material/Drawer';
 
 const fetchData = async (keyword) => {
   const { API_HOST } = getConfig().publicRuntimeConfig;
@@ -26,6 +32,7 @@ const fetchData = async (keyword) => {
 const Shops = ({ firstViewShops }) => {
   const [keyword, setKeyword] = React.useState('');
   const [shops, setShops] = React.useState([]);
+  // const [state, setState] = React.useState(false);
 
   useEffect(() => {
     setShops(firstViewShops);
@@ -38,12 +45,29 @@ const Shops = ({ firstViewShops }) => {
     setKeyword('');
   };
 
+
+
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" sx={{ padding: '0 !important' }}>
+      {/* <Drawer open={state}>
+        <List />
+      </Drawer> */}
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              News
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
       <Box
         component="form"
         noValidate
-        maxWidth="md"
         sx={{
           marginTop: 8,
           display: 'flex',
