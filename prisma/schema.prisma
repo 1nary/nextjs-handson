@@ -9,3 +9,9 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model genres {
+  id Int @id @default(autoincrement())
+  code String @db.VarChar(255) @unique
+  name String @db.VarChar(255) @unique
+}

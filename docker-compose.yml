@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:8.0.31
     environment:
-      MYSQL_DATABASE: nextjs-handson
+      MYSQL_DATABASE: nextjs-handson-karimata
       MYSQL_ROOT_PASSWORD: pass
     ports:
       - 3306:3306
