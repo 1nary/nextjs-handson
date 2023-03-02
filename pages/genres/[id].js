@@ -5,9 +5,6 @@ import Typography from '@mui/material/Typography';
 const fetchGenre = async (id) => {
   const { API_HOST } = getConfig().publicRuntimeConfig;
 
-  // const query = new URLSearchParams();
-  // if (id) query.set('id', id);
-
   const host = process.browser ? '' : API_HOST;
   const res = await fetch(`${host}/api/genres/${id}`);
   return await res.json();
