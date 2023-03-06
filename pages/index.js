@@ -45,6 +45,34 @@ export default function Home() {
                 </Card>
               </Link>
             </Grid>
+            <Grid item xs={3} sx={{ maxWidth: 300 }}>
+              <Link href="https://www.hotpepper.jp/SA98/" rel="noopener noreferrer" target="_blank">
+                <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 2, width: 'auto' }}>
+                  <CardMedia
+                    className={styles.card}
+                    style={{
+                      background: `url('https://imgfp.hotp.jp/IMGH/17/63/P035421763/P035421763_238.jpg')`,
+                      padding: 0,
+                      margin: 0,
+                      marginBottom: 8,
+                      maxWidth: '100%',
+                      display: 'block',
+                      paddingTop: '100%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                    component="img"
+                  />
+                  <Box sx={{ display: 'flex' }}>
+                    <Typography sx={{ fontWeight: 'bold' }}>ぱいかじ</Typography>
+                    <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>300m</Typography>
+                  </Box>
+                  <Typography>居酒屋</Typography>
+                  <Typography>10:00～21:00</Typography>
+                </Card>
+              </Link>
+            </Grid>
           </Grid>
         </Box>
       </main>
