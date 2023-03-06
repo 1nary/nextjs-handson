@@ -1,9 +1,13 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import Header from '../component/header';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import { Card, CardMedia, Typography } from '@mui/material';
+import Link from 'next/link';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+
   return (
     <div>
       <Head>
@@ -13,9 +17,37 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Header/>
+        <Header />
+        <Box sx={{ pt: 3, px: 8 }}>
+          <Grid container spacing={4}>
+            <Grid item xs={3} sx={{ maxWidth: 300 }}>
+              <Link href="https://www.hotpepper.jp/SA98/" rel="noopener noreferrer" target="_blank">
+                <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 2, width: 'auto' }}>
+                  <CardMedia
+                    className={styles.card}
+                    style={{
+                      background: 'gray',
+                      padding: 0,
+                      margin: 0,
+                      marginBottom: 8,
+                      maxWidth: '100%',
+                      display: 'block',
+                    }}
+                    component="img"
+                    image="https://imgfp.hotp.jp/IMGH/73/49/P035907349/P035907349_238.jpg"
+                  />
+                  <Box sx={{ display: 'flex' }}>
+                    <Typography sx={{ fontWeight: 'bold' }}>ぱいかじ</Typography>
+                    <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>300m</Typography>
+                  </Box>
+                  <Typography>居酒屋</Typography>
+                  <Typography>10:00～21:00</Typography>
+                </Card>
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
       </main>
-      
     </div>
   );
 }
