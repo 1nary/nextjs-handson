@@ -1,15 +1,25 @@
-.container {
-  padding: 0 2rem;
-}
-
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
+  padding: 1.5rem 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  background-color: #ff5722;
+  color: #fff;
+  width: 110px;
+}
+
+.btn:hover {
+  background-color: #ff7043
+}
+
+.header {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
 }
 
 .footer {
