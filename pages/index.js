@@ -4,17 +4,9 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Card, CardMedia, Typography } from '@mui/material';
 import Link from 'next/link';
-import getConfig from 'next/config';
 import Header from '../component/header';
 import styles from '../styles/Home.module.css';
-
-const fetchGourmets = async () => {
-  const { API_HOST } = getConfig().publicRuntimeConfig;
-
-  const host = process.browser ? '' : API_HOST;
-  const res = await fetch(`${host}/api/gourmets`);
-  return await res.json();
-};
+import {fetchGourmets} from '../lib/fetchHelper'
 
 export default function Home({ firstViewGourmets }) {
   const [gourmets, setGourmets] = useState([]);
@@ -33,11 +25,11 @@ export default function Home({ firstViewGourmets }) {
 
       <main className={styles.main}>
         <Header />
-        <Box sx={{ pt: 3, px: 9 }}>
+        <Box sx={{ pt: 3, px: 7 }} >
           <Grid container spacing={4}>
             {gourmets.map((gourmet) => {
               return (
-                <Grid item xs={3} sx={{ maxWidth: 300 }} key={gourmet.id}>
+                <Grid item xs={6} sm={4} md={3} sx={{ maxWidth: 300 }} key={gourmet.id}>
                   <Link href={`${gourmet.urls.pc}`} rel="noopener noreferrer" target="_blank">
                     <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 0, width: 'auto' }}>
                       <CardMedia
@@ -55,7 +47,7 @@ export default function Home({ firstViewGourmets }) {
                       <Box sx={{ color: 'gray' }}>
                         <Typography sx={{ fontSize: '15px', lineHeight: '1.2' }}>{gourmet.genre.name}</Typography>
                         <details>
-                          <summary>営業時間</summary>
+                          <summary style={{ fontSize: '15px' }}>営業時間</summary>
                           <Typography sx={{ fontSize: '15px' }}>{gourmet.open}</Typography>
                         </details>
                       </Box>
