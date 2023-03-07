@@ -1,20 +1,20 @@
 import { PrismaClient } from '@prisma/client';
 
-const getFavoriteShop = async (id) => {
+const getFavoriteShop = async (gourme_identifier) => {
   const prisma = new PrismaClient();
-  const gourmet = await prisma.favorite_shops.findUnique({
+  const favorite_shop = await prisma.favorite_shops.findUnique({
     where: {
-      id,
+      gourme_identifier,
     },
   });
 
-  return gourmet;
+  return favorite_shop;
 };
 
 const favoriteShop = async (req, res) => {
   switch (req.method) {
     case 'GET':
-      return res.status(200).json(await getFavoriteShop(parseInt(req.query.id, 10)));
+      return res.status(200).json(await getFavoriteShop(req.query.id));
       break;
 
     default:
