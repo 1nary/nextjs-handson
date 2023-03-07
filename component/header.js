@@ -9,7 +9,7 @@ const Header = ({ setGourmets }) => {
 
   const onSearchClick = async () => {
     const data = await fetchGourmets(keyword);
-    
+
     setGourmets(data);
   };
 
@@ -26,20 +26,13 @@ const Header = ({ setGourmets }) => {
           <TextField
             fullWidth
             label="キーワード（例：カフェ・ラーメン・レストラン）"
-            id="fullWidth"
             value={keyword}
             onChange={(event) => {
               setKeyword(event.target.value);
             }}
           />
         </Box>
-        <Button
-          color="inherit"
-          className={styles.btn}
-          onClick={() => {
-            onSearchClick();
-          }}
-        >
+        <Button color="inherit" className={styles.btn} onClick={onSearchClick}>
           検索
         </Button>
       </Toolbar>
