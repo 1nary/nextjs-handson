@@ -7,8 +7,8 @@ import React from 'react';
 const Header = () => {
   return (
     <AppBar position="static" className={styles.header} sx={{ px: 7 }}>
-      <Toolbar>
-        <Image src="/logo.svg" alt="Vercel Logo" width={230} height={20} />
+      <Toolbar style={{ padding: '0px' }}>
+        <Image src="/logo.svg" alt="Vercel Logo" width={200} height={20} />
         <Box
           sx={{
             width: '100%',
