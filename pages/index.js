@@ -1,12 +1,19 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import Header from '../component/header';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Card, CardMedia, Typography } from '@mui/material';
 import Link from 'next/link';
+import Header from '../component/header';
 import styles from '../styles/Home.module.css';
+import {fetchGourmets} from '../lib/fetchHelper'
 
-export default function Home() {
+export default function Home({ firstViewGourmets }) {
+  const [gourmets, setGourmets] = useState([]);
+
+  useEffect(() => {
+    setGourmets(firstViewGourmets);
+  }, [firstViewGourmets]);
 
   return (
     <div>
@@ -18,36 +25,50 @@ export default function Home() {
 
       <main className={styles.main}>
         <Header />
-        <Box sx={{ pt: 3, px: 8 }}>
+        <Box sx={{ pt: 3, px: 7 }} >
           <Grid container spacing={4}>
-            <Grid item xs={3} sx={{ maxWidth: 300 }}>
-              <Link href="https://www.hotpepper.jp/SA98/" rel="noopener noreferrer" target="_blank">
-                <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 2, width: 'auto' }}>
-                  <CardMedia
-                    className={styles.card}
-                    style={{
-                      background: 'gray',
-                      padding: 0,
-                      margin: 0,
-                      marginBottom: 8,
-                      maxWidth: '100%',
-                      display: 'block',
-                    }}
-                    component="img"
-                    image="https://imgfp.hotp.jp/IMGH/73/49/P035907349/P035907349_238.jpg"
-                  />
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography sx={{ fontWeight: 'bold' }}>ぱいかじ</Typography>
-                    <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>300m</Typography>
-                  </Box>
-                  <Typography>居酒屋</Typography>
-                  <Typography>10:00～21:00</Typography>
-                </Card>
-              </Link>
-            </Grid>
+            {gourmets.map((gourmet) => {
+              return (
+                <Grid item xs={6} sm={4} md={3} sx={{ maxWidth: 300 }} key={gourmet.id}>
+                  <Link href={`${gourmet.urls.pc}`} rel="noopener noreferrer" target="_blank">
+                    <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 0, width: 'auto' }}>
+                      <CardMedia
+                        className={styles.card}
+                        style={{
+                          background: `url('${gourmet.photo.pc.l}') no-repeat center`,
+                          backgroundSize: 'cover',
+                        }}
+                        component="img"
+                      />
+                      <Box sx={{ display: 'flex' }}>
+                        <Typography sx={{ fontSize: '15px', fontWeight: 'bold' }}>{gourmet.name}</Typography>
+                        <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>000m</Typography>
+                      </Box>
+                      <Box sx={{ color: 'gray' }}>
+                        <Typography sx={{ fontSize: '15px', lineHeight: '1.2' }}>{gourmet.genre.name}</Typography>
+                        <details>
+                          <summary style={{ fontSize: '15px' }}>営業時間</summary>
+                          <Typography sx={{ fontSize: '15px' }}>{gourmet.open}</Typography>
+                        </details>
+                      </Box>
+                    </Card>
+                  </Link>
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
       </main>
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const gourmets = await fetchGourmets();
+
+  return {
+    props: {
+      firstViewGourmets: gourmets,
+    },
+  };
+};
