@@ -6,11 +6,10 @@ import { Card, CardMedia, Typography } from '@mui/material';
 import Link from 'next/link';
 import Header from '../component/header';
 import styles from '../styles/Home.module.css';
-import {fetchGourmets} from '../lib/fetchHelper'
+import { fetchGourmets } from '../lib/fetchHelper';
 
 export default function Home({ firstViewGourmets }) {
   const [gourmets, setGourmets] = useState([]);
-
   useEffect(() => {
     setGourmets(firstViewGourmets);
   }, [firstViewGourmets]);
@@ -24,8 +23,8 @@ export default function Home({ firstViewGourmets }) {
       </Head>
 
       <main className={styles.main}>
-        <Header />
-        <Box sx={{ pt: 3, px: 7 }} >
+        <Header setGourmets={setGourmets} />
+        <Box sx={{ pt: 3, px: 7 }}>
           <Grid container spacing={4}>
             {gourmets.map((gourmet) => {
               return (
