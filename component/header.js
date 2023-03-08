@@ -14,7 +14,7 @@ const Header = ({ setGourmets }) => {
   };
 
   return (
-    <AppBar position="static" className={styles.header} sx={{ px: 7 }}>
+    <AppBar position="static" className={styles.okiuHeader} sx={{ px: 7 }}>
       <Toolbar style={{ padding: '0px' }}>
         <Image src="/logo.svg" alt="Vercel Logo" width={200} height={20} />
         <Box
@@ -32,7 +32,7 @@ const Header = ({ setGourmets }) => {
             }}
           />
         </Box>
-        <Button color="inherit" className={styles.btn} onClick={onSearchClick}>
+        <Button color="inherit" className={styles.okiuBtn} onClick={onSearchClick}>
           検索
         </Button>
       </Toolbar>

@@ -6,17 +6,17 @@
   align-items: center;
 }
 
-.btn {
+.okiuBtn {
   background-color: #ff5722;
   color: #fff;
   width: 110px;
 }
 
-.btn:hover {
+.okiuBtn:hover {
   background-color: #ff7043
 }
 
-.header {
+.okiuHeader {
   background-color: transparent;
   color: black;
   box-shadow: none;
