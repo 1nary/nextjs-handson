@@ -7,13 +7,13 @@
 }
 
 .okiuBtn {
-  background-color: #ff5722;
+  background-color: #ff5722 !important;
   color: #fff;
   width: 110px;
 }
 
 .okiuBtn:hover {
-  background-color: #ff7043
+  background-color: #ff7043 !important;
 }
 
 .okiuHeader {
