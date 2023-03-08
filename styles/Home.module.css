@@ -19,7 +19,7 @@
 .okiuHeader {
   background-color: #fff !important;
   color: black;
-  box-shadow: 'none' !important;
+  box-shadow: 'none !important';
 }
 
 .footer {
