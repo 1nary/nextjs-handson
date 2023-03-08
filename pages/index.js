@@ -2,14 +2,29 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { Card, CardMedia, Typography } from '@mui/material';
+import { Card, CardMedia, Typography, IconButton } from '@mui/material';
 import Link from 'next/link';
 import Header from '../component/header';
 import styles from '../styles/Home.module.css';
 import { fetchGourmets } from '../lib/fetchHelper';
+import { LAT_CAMPUS, LNG_CAMPUS } from '../config/constants';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function Home({ firstViewGourmets }) {
   const [gourmets, setGourmets] = useState([]);
+
+  const distance = (lat, lng) => {
+    const R = Math.PI / 180;
+    const lat1 = lat * R;
+    const lng1 = lng * R;
+    const lat2 = LAT_CAMPUS * R;
+    const lng2 = LNG_CAMPUS * R;
+
+    const km =
+      6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
+    return Math.floor(km * 10) / 10;
+  };
+
   useEffect(() => {
     setGourmets(firstViewGourmets);
   }, [firstViewGourmets]);
@@ -28,7 +43,18 @@ export default function Home({ firstViewGourmets }) {
           <Grid container spacing={4}>
             {gourmets.map((gourmet) => {
               return (
-                <Grid item xs={6} sm={4} md={3} sx={{ maxWidth: 300 }} key={gourmet.id}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={4}
+                  md={3}
+                  style={{ position: 'relative' }}
+                  sx={{ maxWidth: 300 }}
+                  key={gourmet.id}
+                >
+                  <IconButton style={{ position: 'absolute', right: '0' }}>
+                    <FavoriteIcon />
+                  </IconButton>
                   <Link href={`${gourmet.urls.pc}`} rel="noopener noreferrer" target="_blank">
                     <Card sx={{ mb: 1, boxShadow: 0, borderRadius: 0, width: 'auto' }}>
                       <CardMedia
@@ -41,7 +67,9 @@ export default function Home({ firstViewGourmets }) {
                       />
                       <Box sx={{ display: 'flex' }}>
                         <Typography sx={{ fontSize: '15px', fontWeight: 'bold' }}>{gourmet.name}</Typography>
-                        <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>000m</Typography>
+                        <Typography sx={{ ml: 'auto', fontWeight: 'bold' }}>
+                          {distance(gourmet.lat, gourmet.lng)}km
+                        </Typography>
                       </Box>
                       <Box sx={{ color: 'gray' }}>
                         <Typography sx={{ fontSize: '15px', lineHeight: '1.2' }}>{gourmet.genre.name}</Typography>
